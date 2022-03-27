@@ -1,0 +1,98 @@
+.container {
+  .top-button-container {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    .btn-custom {
+      background: #ff9029;
+      background-image: -webkit-linear-gradient(top, #ff9029, #ed3305);
+      background-image: -moz-linear-gradient(top, #ff9029, #ed3305);
+      background-image: -ms-linear-gradient(top, #ff9029, #ed3305);
+      background-image: -o-linear-gradient(top, #ff9029, #ed3305);
+      background-image: linear-gradient(to bottom, #ff9029, #ed3305);
+      -webkit-border-radius: 8;
+      -moz-border-radius: 8;
+      border-radius: 5px;
+      -webkit-box-shadow: 1px 2px 3px #666666;
+      -moz-box-shadow: 1px 2px 3px #666666;
+      box-shadow: 1px 2px 3px #666666;
+      font-family: Arial;
+      color: #ffff;
+      border: none;
+      font-size: 15px;
+      padding: 8px 15px 10px 15px;
+      text-decoration: none;
+      min-width: 127px;
+      transition: all 0.3s;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    .search {
+      height: 40px;
+      text-align: center;
+      margin: auto;
+      position: relative;
+      width: 300px;
+      margin-top: 20px;
+
+      .input-search {
+        width: 100%;
+        padding: 7px 25px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        outline: none;
+        font-size: 18px;
+        color: #666;
+        height: 100%;
+        box-shadow: 1px 1px 9px 3px #00000026;
+        border: 1px solid rgba(181, 161, 161, 0.531);
+      }
+
+      .btn-search {
+        background: none;
+        border: none;
+        line-height: 40px;
+        font-size: 18px;
+        position: absolute;
+        right: 5px;
+        color: #666;
+        cursor: pointer;
+        top: 0px;
+        display: inline;
+      }
+      &:hover {
+        color: #333;
+      }
+    }
+    .detail-customer {
+      color: red;
+    }
+  }
+
+  .table {
+    .p-text-table-customer {
+      color: #444;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .detail-customer {
+      color: #ff471a;
+      margin-right: 3px;
+      text-decoration: none;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .title-customer {
+    color: #ff471a;
+    font-size: 28px;
+  }
+  // .img-listCustomer {
+  //   width: 100px;
+  //   height: 100px;
+  //   object-fit: contain;
+  //   border-radius: 5px;
+  // }
+}

@@ -1,0 +1,139 @@
+<div class="container ">
+  <div class="row">
+    <div class="col-sm-9 mx-auto">
+      <h1 class="title-customer text-center ">{{id==0 ? 'ADD FORM ':'EDIT FORM'}} </h1>
+
+
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label for="inputcode">Code</label>
+            <input formControlName="code" type="text" class="form-control" id="inputcode" placeholder="Code">
+            <div *ngIf="!code?.valid && (code?.dirty ||code?.touched)">
+              <div class="lable-error" [hidden]="!code?.errors?.['required']">
+                Code is required
+              </div>
+              <div class="lable-error" [hidden]="!code?.errors?.['minlength']">
+                Min Length is 5
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-5">
+            <label for="inputLastName">Last name</label>
+            <input formControlName="lastName" type="text" name="lastName" class="form-control" id="inputLastName"
+              placeholder="Last name">
+            <div *ngIf="!lastName?.valid && (lastName?.dirty ||lastName?.touched)">
+              <div class="lable-error" [hidden]="!lastName?.errors?.['required']">
+                Last Name is required
+              </div>
+              <div class="lable-error" [hidden]="!lastName?.errors?.['minlength']">
+                Min Length is 2
+              </div>
+            </div>
+
+
+          </div>
+          <div class="form-group col-md-5">
+            <label for="inputfirstName">First name</label>
+            <input formControlName="firstName" type="text" class="form-control" id="inputfirstName"
+              placeholder="First name">
+            <div *ngIf="!firstName?.valid && (firstName?.dirty ||firstName?.touched)">
+              <div class="lable-error" [hidden]="!firstName?.errors?.['required']">
+                First Name is required
+              </div>
+              <div class="lable-error" [hidden]="!firstName?.errors?.['minlength']">
+                Min Length is 2
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+
+            <label for="inputmail">Email</label>
+            <input formControlName="email" type="text" class="form-control" id="inputmail" placeholder="abcx@gmail.com">
+            <div *ngIf="!email?.valid && (email?.dirty ||email?.touched)">
+              <div class="lable-error" [hidden]="!email?.errors?.['required']">
+                Email is required
+              </div>
+              <div class="lable-error" [hidden]="!email?.errors?.['pattern']">
+                Have to a Email..!!!
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+
+            <label for="inputAddress">Address</label>
+            <input formControlName="address" type="text" class="form-control" id="inputAddress"
+              placeholder="02/54 An Duong vuong">
+            <div *ngIf="!address?.valid && (address?.dirty ||address?.touched)">
+              <div class="lable-error" [hidden]="!address?.errors?.['required']">
+                Address is required
+              </div>
+              <div class="lable-error" [hidden]="!address?.errors?.['minlength']">
+                Min Length is 10
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="inputFender">Gender</label>
+            <select formControlName="gender" class="custom-select" placeholder="Choose gender">
+
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Khác">Khác</option>
+            </select>
+            <div *ngIf="!gender?.valid && (gender?.dirty ||gender?.touched)">
+              <div class="lable-error" [hidden]="!gender?.errors?.['required']">
+                You have choose gender
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputState">Phone</label>
+            <input formControlName="phone" type="number" class="form-control" id="inputFender"
+              placeholder="04564545445">
+            <div *ngIf="!phone?.valid && (phone?.dirty ||phone?.touched)">
+              <div class="lable-error" [hidden]="!phone?.errors?.['required']">
+                Phone is required
+              </div>
+              <div class="lable-error" [hidden]="!phone?.errors?.['minlength']">
+                Min Length is 10
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="Companyname">Company name</label>
+            <input formControlName="company" type="text" class="form-control" id="Companyname"
+              placeholder="Name company">
+            <div *ngIf="!company?.valid && (company?.dirty ||company?.touched)">
+              <div class="lable-error" [hidden]="!company?.errors?.['required']">
+                Company is required
+              </div>
+              <div class="lable-error" [hidden]="!company?.errors?.['minlength']">
+                Min Length is 3
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-group">
+            <label for="Companyname">Image</label>
+            <input formControlName="image" type="text" class="form-control" id="image" placeholder="enter urlImage ">
+          </div>
+        </div>
+        <button type="submit" [disabled]="!customerForm.valid" class="btn btn-primary btn-custom">{{id==0 ?
+          'ADD':'EDIT'}} </button>
+      </form>
+
+
+    </div>
+  </div>
+</div>
