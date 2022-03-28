@@ -13,9 +13,9 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CheckDeactivate } from 'src/app/core/guard/check-deactivate';
-import { Customer } from 'src/app/core/models/customer.class';
-import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
+import { CheckDeactivate } from 'src/app/guard/check-deactivate';
+import { Customer } from 'src/app/models/customer.class';
+import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-form-add-edit-customer',
@@ -140,8 +140,5 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
     }
     console.log('check is Editting:============>', this.isEditing);
     return !this.isEditing || confirm('Bạn có muốn thoát khi chưa lưu');
-    // return (
-    //   this.customerForm.dirty && confirm('Bạn có muốn thoát khi chưa lưu')
-    // );
   }
 }
