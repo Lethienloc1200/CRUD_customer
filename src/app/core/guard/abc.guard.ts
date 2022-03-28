@@ -7,8 +7,8 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FormAddEditCustomerComponent } from '../components/form-add-edit-customer/form-add-edit-customer.component';
-import { CustomerService } from '../service/customer.service';
+
+import { CustomerService } from '../../features/customer-management/service/customer.service';
 import { CheckDeactivate } from './check-deactivate';
 
 @Injectable({

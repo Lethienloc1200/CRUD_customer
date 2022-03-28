@@ -9,12 +9,13 @@ import { Observable } from 'rxjs';
 import { catchError, delay, map, tap } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
-import { Customer } from '../models/customer.class';
+import { Customer } from 'src/app/features/customer-management/models/customer.class';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
-  currentUser = 'LocLT8';
+  currentUser = 'LocLT88';
   private REST_API_SERVER = 'http://localhost:3000';
   private httpOptions = {
     headers: new HttpHeaders({
@@ -29,15 +30,19 @@ export class CustomerService {
     const url = `${this.REST_API_SERVER}/customers`;
     return this.httpClient.get<any>(url, this.httpOptions).pipe(
       catchError(this.handleError),
-      delay(500),
+      delay(400),
       map((data) =>
+        // console.log('check data===>u=>', u);
+
         data.filter((u: any) => {
-          console.log('check===>u=>', u);
+          // console.log('check===>u=>', u);
           if (!query) return true;
           return (
+            u.code.toLowerCase().startsWith(query.toLowerCase()) ||
             u.firstName.toLowerCase().startsWith(query.toLowerCase()) ||
             u.lastName.toLowerCase().startsWith(query.toLowerCase()) ||
-            u.email.toLowerCase().startsWith(query.toLowerCase())
+            u.email.toLowerCase().startsWith(query.toLowerCase()) ||
+            u.address.toLowerCase().startsWith(query.toLowerCase())
           );
         })
       )
