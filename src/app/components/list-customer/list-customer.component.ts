@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, startWith, switchMap, tap } from 'rxjs';
-import { Customer } from 'src/app/models/customer.class';
-import { CustomerService } from 'src/app/service/customer.service';
+import { Customer } from 'src/app/core/models/customer.class';
+
+import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
 
 @Component({
   selector: 'app-list-customer',
@@ -12,6 +13,7 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class ListCustomerComponent implements OnInit {
   public customerList: Customer[] = [];
+
   queryControl = new FormControl('');
   loading = true;
   constructor(
@@ -48,6 +50,7 @@ export class ListCustomerComponent implements OnInit {
       )
       .subscribe((data) => {
         this.customerList = data;
+        console.log('check data==>', this.customerList);
       });
   }
 

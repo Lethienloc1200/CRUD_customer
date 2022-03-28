@@ -6,7 +6,7 @@
         <button class="btn btn-primary btn-custom my-3" (click)="addCustomer()">Add customer</button>
         <form>
           <div class="search">
-            <input class="input-search" type="text" [formControl]="queryControl" />
+            <input class="input-search" type="text" [formControl]="queryControl" placeholder="Search..." />
             <button class="btn-search">
               <i class="fa fa-search"></i>
             </button>
@@ -30,6 +30,8 @@
           <tr *ngFor="let customer of customerList ">
             <th>
               <p class="p-text-table-customer">{{ customer?.code }}</p>
+
+
             </th>
             <th>
               <p class="p-text-table-customer">{{ customer?.lastName }}</p>
@@ -39,7 +41,11 @@
             </th>
 
             <th>
-              <p class="p-text-table-customer">{{ customer?.address }}</p>
+              <h3 class="p-text-table-customer">abc:{{ customer?.address2|json }}</h3>
+              <!-- <p class="p-text-table-customer">numeber:{{ customer.address }} and json=> {{ customer.address |json }} -->
+              <!-- </p> -->
+
+
             </th>
             <th>
               <p class="p-text-table-customer">{{ customer?.gender }}</p>
