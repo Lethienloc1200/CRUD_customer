@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row mt-5">
-    <div class="col-sm-3">
+    <div class="col-sm-6 col-md-4">
       <div class="img-box" *ngIf="customer.image;  else imageTmpl">
         <img src="{{ customer.image}}" style="width: 200px; height:200px;border-radius: 5px;" />
 
@@ -14,27 +14,26 @@
         </div>
       </ng-template>
     </div>
-    <div class="col-sm-8">
-      <div *ngIf="customer" class="row">
+    <div class="col-sm-6 col-md-8">
 
-        <div class="col-sm-9  ">
-          <h1 class="title-customer mb-4">Information about : {{customer.firstName +" "}} {{customer.lastName}}</h1>
 
-          <div class="detail-descript">Code:<span>{{ customer.code}} </span></div>
-          <div class="detail-descript">First name:<span>{{customer.firstName}} </span></div>
-          <div class="detail-descript">Last name:<span>{{customer.lastName}}</span> </div>
-          <div class="detail-descript">Gender:<span>{{customer.gender}}</span> </div>
-          <div class="detail-descript">Address:<span>{{customer.address}}</span> </div>
-          <div class="detail-descript">Email:<span>{{customer.email}}</span> </div>
-          <div class="detail-descript">Phone:<span>{{customer.phone}}</span> </div>
-          <br>
-          <br>
-          <button class="btn btn-primary btn-custom" [routerLink]="['/listCustomer']">
-            <i class="fas fa-arrow-left"></i> Back home</button>
+      <h1 class="title-customer mb-4">Information about : {{customer.firstName +" "}} {{customer.lastName}}</h1>
 
-        </div>
+      <div class="detail-descript">Code:<span>{{ customer.code}} </span></div>
+      <div class="detail-descript">First name:<span>{{customer.firstName}} </span></div>
+      <div class="detail-descript">Last name:<span>{{customer.lastName}}</span> </div>
+      <div class="detail-descript">Gender:<span>{{customer.gender}}</span> </div>
+      <div class="detail-descript">Birthday:<span>{{customer.address}}</span> </div>
+      <div class="detail-descript">Email:<span>{{customer.email}}</span> </div>
+      <div class="detail-descript">Phone:<span>{{customer.phone}}</span> </div>
+      <br>
+      <br>
+      <button class="btn btn-primary btn-custom" [routerLink]="['../../listCustomer']">
+        <i class="fas fa-arrow-left"></i> Back home</button>
 
-      </div>
+
+
+
     </div>
   </div>
 </div>

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, startWith, switchMap, tap } from 'rxjs';
-import { Customer } from 'src/app/features/customer-management/models/customer.class';
+import { Customer } from '../../models/customer.class';
 
-import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
+import { CustomerService } from '../../service/customer.service';
 
 @Component({
   selector: 'app-list-customer',
@@ -13,7 +13,8 @@ import { CustomerService } from 'src/app/features/customer-management/service/cu
 })
 export class ListCustomerComponent implements OnInit {
   public customerList: Customer[] = [];
-
+  totalLength!: any;
+  page: number = 1;
   queryControl = new FormControl('');
   loading = true;
   constructor(
@@ -24,13 +25,6 @@ export class ListCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
-
-  // private loadData() {
-  //   this.customerService.getListCustomer().subscribe((data: Customer[]) => {
-  //     console.log('data=>cumstomerList', data);
-  //     this.customerList = data;
-  //   });
-  // }
 
   private loadData() {
     this.queryControl.valueChanges
@@ -50,32 +44,26 @@ export class ListCustomerComponent implements OnInit {
       )
       .subscribe((data) => {
         this.customerList = data;
-        console.log('check data==>', this.customerList);
+        this.totalLength = data.length;
+        console.log('CHECK===========> totalLength=>', this.totalLength);
       });
   }
 
   addCustomer() {
-    this.router.navigate(['form-add-edit', 0]);
+    this.router.navigate(['list/form-add-edit', 0]);
   }
   editCustomer(customerID: string) {
-    this.router.navigate(['form-add-edit', customerID]);
+    this.router.navigate(['list/form-add-edit', customerID]);
   }
   deleteStudent(customerID: any) {
     this.customerService.deleteCustomer(customerID).subscribe((data) => {
       this.loadData();
     });
   }
-
-  // search(query: string) {
-  //   // this.InputText = query;
-  //   if (query == '') {
-  //     this.loadData();
-  //   } else {
-  //     console.log(' chek search ', query);
-  //     this.customerList = this.customerList.filter((res) => {
-  //       console.log(' chek search ', query);
-  //       return res.firstName.toLowerCase().includes(query.toLocaleLowerCase());
-  //     });
-  //   }
-  // }
+  key = 'id';
+  reverse: boolean = false; //đảo ngược
+  sort(key: string) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 }

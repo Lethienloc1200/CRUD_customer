@@ -2,19 +2,25 @@
   <div class="container ">
 
     <div class="logobox">
-      <span class="loclogo">LocLT8</span> <a class="navbar-brand logo" [routerLink]="['listCustomer']">Logo</a>
+      <span class="loclogo">LocLT8</span> <a class="navbar-brand logo" [routerLink]="['list/listCustomer']">Logo</a>
+      <button (click)="toggleHeader()">toggle</button>
     </div>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
       aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
     <div class="collapse navbar-collapse heard-right " id="collapsibleNavId">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-item ">
-          <a class="nav-link " [routerLink]="['listCustomer']">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link " [routerLink]="['user']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-item ">
+          <a class="nav-link " [routerLink]="['list/listCustomer']">ListCustomer</a>
         </li>
         <li routerLinkActive="active" class="nav-item">
-          <a class="nav-link" [routerLink]="['form-add-edit',0]">Add customer</a>
+          <a class="nav-link" [routerLink]="['list/form-add-edit',0]">Add customer</a>
         </li>
+
       </ul>
+      <!-- <span class="spannn">Span</span> -->
     </div>
   </div>
 </nav>
