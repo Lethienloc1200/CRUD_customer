@@ -1,29 +1,29 @@
+// import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module NgxPaginationModule
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent } from './shared/button/button.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CustomerModule } from './features/customer-management/custome-module/customer.module';
+import { CustomerModule } from './features/customer-management/customer-module/customer.module';
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './share/header/header.component';
+import { MaterialModule } from './share/module/material.module';
 import { UserComponent } from './features/user-management/user/user.component';
-
-//phân chia theo module
-//sửa sidenav material
-// intercepter guard
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ButtonComponent, UserComponent],
+  declarations: [AppComponent, HeaderComponent, UserComponent],
   imports: [
     BrowserModule,
-    CustomerModule,
     AppRoutingModule,
+    // CustomerModule,
     HttpClientModule,
     FormsModule,
+
+    RouterModule,
     ReactiveFormsModule,
+    MaterialModule,
     BrowserAnimationsModule,
   ],
   providers: [],

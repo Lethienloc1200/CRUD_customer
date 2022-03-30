@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from 'src/app/features/customer-management/models/customer.class';
-import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
+import { Customer } from '../../../models/customer.class';
+import { CustomerService } from '../../../service/customer.service';
+// import { Customer } from 'src/app/models/customer.class';
+// import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-detail-customer',

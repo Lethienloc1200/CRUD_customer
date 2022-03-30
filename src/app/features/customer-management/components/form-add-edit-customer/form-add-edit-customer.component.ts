@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
 import {
   FormBuilder,
   FormControl,
@@ -15,8 +14,11 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CheckDeactivate } from 'src/app/core/guard/check-deactivate';
-import { Customer } from 'src/app/features/customer-management/models/customer.class';
-import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
+import { Customer } from '../../models/customer.class';
+import { CustomerService } from '../../service/customer.service';
+// import { CheckDeactivate } from 'src/app/guard/check-deactivate';
+// import { Customer } from 'src/app/models/customer.class';
+// import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-form-add-edit-customer',
@@ -96,10 +98,10 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
         });
     }
 
-    this.router.navigate(['listCustomer']);
+    this.router.navigate(['list/listCustomer']);
 
-    console.log('new customer ', newCustomer);
-    console.log('customer2 ', this.customerForm.controls);
+    // console.log('new customer ', newCustomer);
+    // console.log('customer2 ', this.customerForm.controls);
   }
   get firstName() {
     return this.customerForm.get('firstName');
@@ -141,8 +143,5 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
     }
     console.log('check is Editting:============>', this.isEditing);
     return !this.isEditing || confirm('Bạn có muốn thoát khi chưa lưu');
-    // return (
-    //   this.customerForm.dirty && confirm('Bạn có muốn thoát khi chưa lưu')
-    // );
   }
 }

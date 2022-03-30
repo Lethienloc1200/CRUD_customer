@@ -89,10 +89,13 @@
     color: #ff471a;
     font-size: 28px;
   }
-  // .img-listCustomer {
-  //   width: 100px;
-  //   height: 100px;
-  //   object-fit: contain;
-  //   border-radius: 5px;
-  // }
+  .fix-pagination {
+    position: absolute;
+
+    right: 60px;
+    margin-top: 20px;
+  }
+  .table.table {
+    height: 360px;
+  }
 }

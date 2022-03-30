@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListCustomerComponent } from './features/customer-management/components/list-customer/list-customer.component';
 import { UserComponent } from './features/user-management/user/user.component';
 
 const routes: Routes = [
@@ -13,14 +12,13 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
   },
-
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import(
-  //       './features/customer-management/custome-module/customer.module'
-  //     ).then((m) => m.CustomerModule),
-  // },
+  {
+    path: 'list',
+    loadChildren: () =>
+      import(
+        './features/customer-management/customer-module/customer.module'
+      ).then((m) => m.CustomerModule),
+  },
 ];
 
 @NgModule({

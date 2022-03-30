@@ -1,3 +1,25 @@
-<app-header></app-header>
+<app-header (clickToggle)="drawer.toggle()"></app-header>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="over">
+    <div class="menu">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-item ">
+          <a class="nav-link " [routerLink]="['user']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-item ">
+          <a class="nav-link " [routerLink]="['list/listCustomer']">ListCustomer</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['list/form-add-edit',0]">Add customer</a>
+        </li>
+      </ul>
+    </div>
+  </mat-drawer>
 
-<router-outlet></router-outlet>
+  <div class="example-sidenav-content">
+    <!-- <button type="button" mat-button color="accent" (click)="drawer.toggle()">
+      Menu sidenav
+    </button> -->
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

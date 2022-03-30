@@ -7,8 +7,8 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
 
-import { CustomerService } from '../../features/customer-management/service/customer.service';
 import { CheckDeactivate } from './check-deactivate';
 
 @Injectable({

@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <h1 class="title-customer">List all customers</h1>
       <div class="top-button-container">
-        <button class="btn btn-primary btn-custom my-3" (click)="addCustomer()">Add customer</button>
+        <button class="btn btn-primary btn-custom my-3" (click)="addCustomer()"> Add customer</button>
         <form>
           <div class="search">
             <input class="input-search" type="text" [formControl]="queryControl" placeholder="Search..." />
@@ -17,9 +17,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Code</th>
-            <th>Last Name</th>
-            <th>First Name</th>
+            <th (click)="sort('code')">Code <i class="fa fa-sort"></i></th>
+            <th (click)="sort('lastName')">Last name <i class="fa fa-sort"></i></th>
+
+            <th (click)="sort('firstName')">First name <i class="fa fa-sort"></i></th>
+
             <th>Address</th>
             <th>Gender</th>
             <th>Action</th>
@@ -27,11 +29,12 @@
         </thead>
         <h3 *ngIf="loading">Loading.......</h3>
         <tbody *ngIf="!loading">
-          <tr *ngFor="let customer of customerList ">
+          <tr
+            *ngFor="let customer of customerList | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }| orderBy:key:reverse">
+
             <th>
-              <p class="p-text-table-customer">{{ customer?.code }}</p>
-
-
+              <a class="p-text-table-customer">{{ customer?.code }}</a>
+              <!-- [routerLink]="['./form-add-edit', customer?.id]" -->
             </th>
             <th>
               <p class="p-text-table-customer">{{ customer?.lastName }}</p>
@@ -41,17 +44,13 @@
             </th>
 
             <th>
-              <h3 class="p-text-table-customer">abc:{{ customer?.address2|json }}</h3>
-              <!-- <p class="p-text-table-customer">numeber:{{ customer.address }} and json=> {{ customer.address |json }} -->
-              <!-- </p> -->
-
-
+              <p class="p-text-table-customer">{{ customer?.address }}</p>
             </th>
             <th>
               <p class="p-text-table-customer">{{ customer?.gender }}</p>
             </th>
 
-            <th> <a class="detail-customer" [routerLink]="['/detail-customer',customer.id]">Detail</a>
+            <th> <a class="detail-customer" [routerLink]="['../detail-customer',customer.id]">Detail</a>
               <button class="btn btn-primary mx-1 " (click)="editCustomer(customer.id)"><i
                   class="fas fa-edit"></i></button>
               <button class="btn btn-warning" (click)="deleteStudent(customer.id)"><i class="fas fa-backspace"></i>
@@ -60,7 +59,11 @@
           </tr>
         </tbody>
 
+
       </table>
+      <div class="fix-pagination">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>
