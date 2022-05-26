@@ -43,14 +43,15 @@ export class ListCustomerComponent implements OnInit {
         )
       )
       .subscribe((data) => {
-        this.customerList = data;
+        this.customerList = data.map((record) => new Customer(record));
         this.totalLength = data.length;
-        console.log('CHECK===========> totalLength=>', this.totalLength);
+        // console.log('CHECK===========> totalLength=>', this.totalLength);
+        console.log('CHECK===========> data=>', this.customerList);
       });
   }
 
   addCustomer() {
-    this.router.navigate(['list/form-add-edit', 0]);
+    this.router.navigate(['list/form-add']);
   }
   editCustomer(customerID: string) {
     this.router.navigate(['list/form-add-edit', customerID]);
@@ -60,10 +61,13 @@ export class ListCustomerComponent implements OnInit {
       this.loadData();
     });
   }
+
+  //sort
   key = 'id';
   reverse: boolean = false; //đảo ngược
   sort(key: string) {
     this.key = key;
     this.reverse = !this.reverse;
   }
+
 }

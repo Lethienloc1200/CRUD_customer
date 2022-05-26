@@ -11,9 +11,10 @@ import { HeaderComponent } from './share/header/header.component';
 import { MaterialModule } from './share/module/material.module';
 import { UserComponent } from './features/user-management/user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './features/customer-management/components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UserComponent],
+  declarations: [AppComponent, HeaderComponent, UserComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

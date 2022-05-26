@@ -1,7 +1,7 @@
 <div class="container ">
   <div class="row">
     <div class="col-sm-9 mx-auto">
-      <h1 class="title-customer text-center ">{{id==0 ? 'ADD FORM ':'EDIT FORM'}} </h1>
+      <h1 class="title-customer text-center ">{{id ? 'Edit FORM ':'Add FORM'}} </h1>
 
 
       <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
@@ -75,6 +75,58 @@
                 Min Length is 10
               </div>
             </div>
+
+          </div>
+
+        </div>
+        <h4>Address detail</h4>
+        <div class="form-row">
+
+          <br>
+          <div class="form-group col-sm-12">
+            <div formGroupName="addressDetail">
+              <div class="row">
+                <div class="col-sm-4">
+                  <input formControlName="name" type="text" class="form-control" id="inputAddress" placeholder="name">
+                  <div
+                    *ngIf="!addressDetail?.get('name')?.valid && (addressDetail?.get('name')?.dirty ||addressDetail?.get('name')?.touched)">
+                    <div class="lable-error" [hidden]="!addressDetail?.get('name')?.errors?.['required']">
+                      Name is required
+                    </div>
+                    <div class="lable-error" [hidden]="!addressDetail?.get('name')?.errors?.['minlength']">
+                      Min Length is 2
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input formControlName="number" type="text" class="form-control" id="inputAddress"
+                    placeholder="number">
+                  <div *ngIf="!number?.valid && (number?.dirty ||number?.touched)">
+                    <div class="lable-error" [hidden]="!number?.errors?.['required']">
+                      Number is required
+                    </div>
+                    <div class="lable-error" [hidden]="!number?.errors?.['minlength']">
+                      Min Length is 2
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <input formControlName="something" type="text" class="form-control" id="inputAddress"
+                    placeholder="something">
+                  <div *ngIf="!something?.valid && (something?.dirty ||something?.touched)">
+                    <div class="lable-error" [hidden]="!something?.errors?.['required']">
+                      Something is required
+                    </div>
+                    <div class="lable-error" [hidden]="!something?.errors?.['minlength']">
+                      Min Length is 5
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
           </div>
         </div>
 
@@ -128,9 +180,16 @@
             <label for="Companyname">Image</label>
             <input formControlName="image" type="text" class="form-control" id="image" placeholder="enter urlImage ">
           </div>
+          <div *ngIf="!image?.valid && (image?.dirty ||image?.touched)">
+            <div class="lable-error" [hidden]="!image?.errors?.['required']">
+              Image is required
+            </div>
+
+          </div>
         </div>
         <button type="submit" [disabled]="!customerForm.valid" class="btn btn-primary btn-custom">{{id==0 ?
           'ADD':'EDIT'}} </button>
+        <button type="button" (click)="back()" class="btn btn-primary btn-custom">Back </button>
       </form>
 
 

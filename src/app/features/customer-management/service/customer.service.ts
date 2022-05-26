@@ -32,12 +32,13 @@ export class CustomerService {
       delay(500),
       map((data) =>
         data.filter((u: Customer) => {
-          console.log('check===>u=>', u);
+          // console.log('check===>u=>', u);
           if (!query) return true;
           return (
             u.firstName.toLowerCase().startsWith(query.toLowerCase()) ||
             u.lastName.toLowerCase().startsWith(query.toLowerCase()) ||
             u.code.toLowerCase().startsWith(query.toLowerCase()) ||
+            u.address.toLowerCase().startsWith(query.toLowerCase()) ||
             u.email.toLowerCase().startsWith(query.toLowerCase())
           );
         })

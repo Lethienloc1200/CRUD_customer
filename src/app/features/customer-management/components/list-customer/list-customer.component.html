@@ -19,9 +19,7 @@
           <tr>
             <th (click)="sort('code')">Code <i class="fa fa-sort"></i></th>
             <th (click)="sort('lastName')">Last name <i class="fa fa-sort"></i></th>
-
             <th (click)="sort('firstName')">First name <i class="fa fa-sort"></i></th>
-
             <th>Address</th>
             <th>Gender</th>
             <th>Action</th>
@@ -29,6 +27,9 @@
         </thead>
         <h3 *ngIf="loading">Loading.......</h3>
         <tbody *ngIf="!loading">
+          <tr *ngIf="!customerList.length">
+            <td colspan="6">ahihi Data not available !!!</td>
+          </tr>
           <tr
             *ngFor="let customer of customerList | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }| orderBy:key:reverse">
 
@@ -45,6 +46,9 @@
 
             <th>
               <p class="p-text-table-customer">{{ customer?.address }}</p>
+              <!-- <p class="p-text-table-customer">{{ customer?.addressDetail?.number }}</p>
+              <p class="p-text-table-customer">{{ customer?.addressDetail?.something }}</p>
+              <p class="p-text-table-customer">{{ customer?.addressDetail?.name }}</p> -->
             </th>
             <th>
               <p class="p-text-table-customer">{{ customer?.gender }}</p>
@@ -61,9 +65,11 @@
 
 
       </table>
+
       <div class="fix-pagination">
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
       </div>
     </div>
   </div>
+
 </div>

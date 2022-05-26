@@ -8,9 +8,8 @@ describe('ListCustomerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListCustomerComponent ]
-    })
-    .compileComponents();
+      declarations: [ListCustomerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -18,7 +17,6 @@ describe('ListCustomerComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });

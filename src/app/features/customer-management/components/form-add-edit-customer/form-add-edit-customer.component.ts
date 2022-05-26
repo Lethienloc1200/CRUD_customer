@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+// import { Location } from '@angular/common';
+import { Location } from '@angular/common';
 import {
   ActivatedRoute,
   ActivatedRouteSnapshot,
@@ -26,8 +28,7 @@ import { CustomerService } from '../../service/customer.service';
   styleUrls: ['./form-add-edit-customer.component.scss'],
 })
 export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
-  id!: any;
-  isEditing = false;
+  id: any;
 
   customerForm = this.formBuilder.group({
     code: ['', [Validators.required, Validators.minLength(5)]],
@@ -46,6 +47,7 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
       ],
     ],
     address: ['', [Validators.required, Validators.minLength(6)]],
+    addressDetail: this.initFormAddress(),
     company: ['', [Validators.required, Validators.minLength(2)]],
     image: [''],
   });
@@ -53,47 +55,64 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
     private customerService: CustomerService,
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id > 0) {
+    if (this.id) {
       this.loadDataToEdit(this.id);
     }
-  }
-  loadDataToEdit(id: any) {
-    this.customerService.getCustomer(id).subscribe((data) => {
-      // console.log('edit data:', data);
-      for (const controlName in this.customerForm.controls) {
-        if (controlName) {
-          this.customerForm.controls[controlName].setValue(data[controlName]);
-        }
+    this.code?.valueChanges.subscribe((data) => {
+      if (data) {
+        this.customerForm.get('image')?.setValidators(Validators.required);
+      } else {
+        this.customerForm.get('image')?.setValidators(null);
       }
+      this.customerForm.get('image')?.updateValueAndValidity();
+    });
+    console.log('check=>this.customerForm', this.customerForm);
+    console.log(
+      'check=>this.customerForm.markAsPristine()',
+      this.customerForm.markAsPristine()
+    );
+  }
+
+  initFormAddress() {
+    return this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      number: ['', [Validators.required, Validators.minLength(2)]],
+      something: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
+
+  loadDataToEdit(id: any) {
+    this.customerService.getCustomer(id).subscribe((data) => {
+      this.customerForm.patchValue(data);
+    });
+  }
+
+  back() {
+    this.location.back();
+  }
   onSubmit() {
-    const newCustomer: any = {}; //khởi tạo object chứa value
-    for (const controlName in this.customerForm.controls) {
-      if (controlName) {
-        newCustomer[controlName] =
-          this.customerForm.controls[controlName].value;
-      }
-    }
+    const newCustomer = this.customerForm.getRawValue();
 
     if (this.id > 0) {
       //nếu i> 0 thì Edit
       this.customerService
         .EditCustomer(this.id, newCustomer as Customer)
         .subscribe((data) => {
+          this.customerForm.markAsPristine();
           console.log('data', data);
         });
-      this.isEditing = false;
     } else {
       //nếu i=0 thì Add
       this.customerService
         .addCustomer(newCustomer as Customer)
         .subscribe((data) => {
+          this.customerForm.markAsPristine();
           console.log('data', data);
         });
     }
@@ -127,6 +146,18 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
   get company() {
     return this.customerForm.get('company');
   }
+  get image() {
+    return this.customerForm.get('image');
+  }
+  get addressDetail() {
+    return this.customerForm.get('addressDetail');
+  }
+  get number() {
+    return this.customerForm.get('addressDetail.number');
+  }
+  get something() {
+    return this.customerForm.get('addressDetail.something');
+  }
   checkDeactivate(
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
@@ -136,12 +167,17 @@ export class FormAddEditCustomerComponent implements OnInit, CheckDeactivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.id > 0) {
-      this.isEditing = true;
-    } else {
-      this.isEditing = false;
+    // if (this.id > 0) {
+    //   this.isEditing = true;
+    // } else {
+    //   this.isEditing = false;
+    // }
+    // console.log('check is Editting:============>', this.isEditing);
+
+    // return !this.isEditing || confirm('Bạn có muốn thoát khi chưa lưu');
+    if (this.customerForm.dirty) {
+      return confirm('Bạn có muốn thoát khi chưa lưu');
     }
-    console.log('check is Editting:============>', this.isEditing);
-    return !this.isEditing || confirm('Bạn có muốn thoát khi chưa lưu');
+    return true;
   }
 }

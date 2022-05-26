@@ -22,13 +22,15 @@ export class DetailCustomerComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    if (this.id > 0) {
+    if (this.id) {
       this.loadDataInfor(this.id);
     }
   }
   loadDataInfor(id: any) {
     this.customerService.getCustomer(id).subscribe((data) => {
-      this.customer = data;
+      // this.customer = data;
+      this.customer = new Customer(data);
+
       console.log('detailInfor', this.customer);
     });
   }
