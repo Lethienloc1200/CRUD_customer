@@ -10,11 +10,13 @@ import { catchError, delay, map, tap } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
 import { Customer } from '../models/customer.class';
+import { Login } from '../models/login.class';
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
   currentUser = 'LocLT8';
+  passUserDemo = 'LocLT8';
   private REST_API_SERVER = 'http://localhost:3000';
   private httpOptions = {
     headers: new HttpHeaders({
@@ -58,6 +60,7 @@ export class CustomerService {
       .post<any>(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
   }
+
   public EditCustomer(customerId: number, data: Customer) {
     const url = `${this.REST_API_SERVER}/customers/` + customerId;
     return this.httpClient
@@ -71,7 +74,20 @@ export class CustomerService {
       .delete<Customer>(url)
       .pipe(catchError(this.handleError));
   }
+  // =========================login=================
 
+  public registerUser(data: Login) {
+    const url = `${this.REST_API_SERVER}/login`;
+    return this.httpClient
+      .post<any>(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  public getUserLogin(): Observable<Login[]> {
+    const url = `${this.REST_API_SERVER}/login`;
+    return this.httpClient
+      .get<Login[]>(url, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

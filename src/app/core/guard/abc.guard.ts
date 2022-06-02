@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CustomerService } from 'src/app/features/customer-management/service/customer.service';
+import { UserComponent } from 'src/app/features/user-management/user/user.component';
 
 import { CheckDeactivate } from './check-deactivate';
 
@@ -15,7 +16,10 @@ import { CheckDeactivate } from './check-deactivate';
   providedIn: 'root',
 })
 export class AbcGuard implements CanActivate {
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private user: UserComponent
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,7 +29,7 @@ export class AbcGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.customerService.currentUser == 'LocLT8';
+    return this.user.currentUser == null;
   }
 }
 @Injectable({

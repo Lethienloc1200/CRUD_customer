@@ -12,7 +12,6 @@ import {
   CanLeaveEditCustomerGuard,
 } from 'src/app/core/guard/abc.guard';
 import { Ng2OrderModule } from 'ng2-order-pipe';
-import { LoginComponent } from '../components/login/login.component';
 
 const customerModule: Routes = [
   {
@@ -22,25 +21,24 @@ const customerModule: Routes = [
   {
     path: 'listCustomer',
     component: ListCustomerComponent,
+    canActivate: [AbcGuard],
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
+
   {
     path: 'form-add-edit/:id',
     component: FormAddEditCustomerComponent,
     canDeactivate: [CanLeaveEditCustomerGuard],
+    canActivate: [AbcGuard],
   },
   {
     path: 'form-add',
     component: FormAddEditCustomerComponent,
     canDeactivate: [CanLeaveEditCustomerGuard],
+    canActivate: [AbcGuard],
   },
   {
     path: 'detail-customer/:id',
     component: DetailCustomerComponent,
-    canActivate: [AbcGuard],
   },
 ];
 @NgModule({

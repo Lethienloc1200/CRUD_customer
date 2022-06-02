@@ -1,1 +1,32 @@
-<p>user works!</p>
+<div class="container-login">
+  <h1> ucrrent:{{currentUser}}</h1>
+  <h1 class="title-customer text-center ">Login , wellcome to LocBoy</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onRegister()">
+    <div class="form-group">
+      <label for="">User name</label>
+      <input formControlName="userName" type="text" class="form-control" id="inputcode" placeholder="User name">
+      <div *ngIf="!userName?.valid && (userName?.dirty ||userName?.touched)">
+        <div class="lable-error" [hidden]="!userName?.errors?.['required']">
+          User name is required
+        </div>
+        <div class="lable-error" [hidden]="!userName?.errors?.['minlength']">
+          Min Length is 5
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Password</label>
+      <input formControlName="passUserDemo" type="text" class="form-control" id="inputcode" placeholder="Password">
+      <div *ngIf="!passUserDemo?.valid && (passUserDemo?.dirty ||passUserDemo?.touched)">
+        <div class="lable-error" [hidden]="!passUserDemo?.errors?.['required']">
+          Pass word is required
+        </div>
+        <div class="lable-error" [hidden]="!passUserDemo?.errors?.['minlength']">
+          Min Length is 5
+        </div>
+      </div>
+    </div>
+    <button [disabled]="loginForm.invalid" type="button" class="btn-custom" (click)="login()">login</button>
+    <button [disabled]="!loginForm.valid" type="submit" class="btn-custom">register</button>
+  </form>
+</div>

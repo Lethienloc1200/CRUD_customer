@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerModule } from './features/customer-management/customer-module/customer.module';
@@ -11,10 +12,10 @@ import { HeaderComponent } from './share/header/header.component';
 import { MaterialModule } from './share/module/material.module';
 import { UserComponent } from './features/user-management/user/user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './features/customer-management/components/login/login.component';
+import { HomeComponent } from './features/customer-management/components/home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UserComponent, LoginComponent],
+  declarations: [AppComponent, HeaderComponent, UserComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

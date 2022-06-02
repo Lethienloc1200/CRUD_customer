@@ -1,0 +1,18 @@
+.container {
+  .home {
+    margin: 0px;
+    .left {
+    }
+    .right {
+      // background: red;
+      img {
+        width: 500px;
+        border-radius: 10px;
+      }
+    }
+    ul li {
+      color: red;
+      font-size: 20px;
+    }
+  }
+}
